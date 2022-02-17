@@ -8,6 +8,7 @@ services:
       - db
       - grunt
     environment:
+      - WORDPRESS_SITE_URL=${WORDPRESS_SITE_URL:-http://localhost:8080}
       - WORDPRESS_DB_HOST=db
       - WORDPRESS_DB_NAME
       - WORDPRESS_DB_USER
