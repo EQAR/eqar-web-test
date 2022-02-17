@@ -1,0 +1,63 @@
+version: '3'
+
+services:
+
+  wordpress:
+    image: wordpress:5.9-php7.4
+    depends_on:
+      - db
+      - grunt
+    environment:
+      - WORDPRESS_DB_HOST=db
+      - WORDPRESS_DB_NAME
+      - WORDPRESS_DB_USER
+      - WORDPRESS_DB_PASSWORD
+      - WORDPRESS_TABLE_PREFIX
+      - WORDPRESS_AUTH_KEY
+      - WORDPRESS_SECURE_AUTH_KEY
+      - WORDPRESS_LOGGED_IN_KEY
+      - WORDPRESS_NONCE_KEY
+      - WORDPRESS_AUTH_SALT
+      - WORDPRESS_SECURE_AUTH_SALT
+      - WORDPRESS_LOGGED_IN_SALT
+      - WORDPRESS_NONCE_SALT
+      - DEQAR_WEBAPI_BASE
+      - DEQAR_CONNECTAPI_BASE
+      - DEQAR_API_KEY
+      - EQARDB_API_BASE
+      - EQARDB_API_KEY
+    ports:
+      - "${HTTP_PORT:-8080}:80"
+    volumes:
+      - ./html:/var/www/html:ro
+      - css:/var/www/html/assets/themes/${WORDPRESS_THEME}/public/css:ro
+      - js:/var/www/html/assets/themes/${WORDPRESS_THEME}/public/js:ro
+
+  db:
+    image: mariadb:10
+    volumes:
+      - data:/var/lib/mysql
+      - ./initdb.d:/docker-entrypoint-initdb.d:ro
+    environment:
+      - MARIADB_DATABASE=${WORDPRESS_DB_NAME}
+      - MARIADB_USER=${WORDPRESS_DB_USER}
+      - MARIADB_PASSWORD=${WORDPRESS_DB_PASSWORD}
+      - MARIADB_ROOT_PASSWORD=${WORDPRESS_DB_PASSWORD}
+      - WORDPRESS_TABLE_PREFIX
+      - WORDPRESS_SITE_URL=${WORDPRESS_SITE_URL:-http://localhost:8080}
+
+  grunt:
+    build: grunt/
+    environment:
+      - GRUNT_MODE
+    volumes:
+      - ./html/assets/themes/${WORDPRESS_THEME}/Gruntfile.js:/workdir/Gruntfile.js:ro
+      - ./html/assets/themes/${WORDPRESS_THEME}/src:/workdir/src:ro
+      - css:/workdir/public/css
+      - js:/workdir/public/js
+
+volumes:
+  data:
+  css:
+  js:
+
