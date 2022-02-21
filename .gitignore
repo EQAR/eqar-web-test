@@ -1,5 +1,6 @@
 .backup-filter
 .env
-html/
+wordpress/html/
+eqar-wptheme/
 initdb.d/0001_*.sql
 

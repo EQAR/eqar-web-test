@@ -3,7 +3,7 @@ version: '3'
 services:
 
   wordpress:
-    image: wordpress:5.9-php7.4
+    build: wordpress/
     depends_on:
       - db
       - grunt
@@ -30,7 +30,7 @@ services:
     ports:
       - "${HTTP_PORT:-8080}:80"
     volumes:
-      - ./html:/var/www/html:ro
+      - ./${WORDPRESS_THEME}:/var/www/html/assets/themes/${WORDPRESS_THEME}:ro
       - css:/var/www/html/assets/themes/${WORDPRESS_THEME}/public/css:ro
       - js:/var/www/html/assets/themes/${WORDPRESS_THEME}/public/js:ro
 
@@ -52,8 +52,8 @@ services:
     init: true
     command: [ "${GRUNT_MODE:-default}" ]
     volumes:
-      - ./html/assets/themes/${WORDPRESS_THEME}/Gruntfile.js:/workdir/Gruntfile.js:ro
-      - ./html/assets/themes/${WORDPRESS_THEME}/src:/workdir/src:ro
+      - ./${WORDPRESS_THEME}/Gruntfile.js:/workdir/Gruntfile.js:ro
+      - ./${WORDPRESS_THEME}/src:/workdir/src:ro
       - css:/workdir/public/css
       - js:/workdir/public/js
 

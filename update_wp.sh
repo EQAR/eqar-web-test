@@ -1,11 +1,14 @@
 #!/bin/bash
+#
+# copy Wordpress from staging website - run this before (re-)building container
+#
 
 LANG=C
 LC_ALL=C
 export LANG LC_ALL
 
 RemotePath="websrv.eqar.eu:/sites/staging.eqar.eu/www/"
-LocalDest="html/"
+LocalDest="wordpress/html/"
 Plugins="
 	acf-content-analysis-for-yoast-seo
 	advanced-custom-fields-pro
@@ -34,7 +37,7 @@ echo ; echo "Updating ${LocalDest}:"
 mkdir -p "${LocalDest}assets/plugins"
 
 echo -n "  * Core: "
-rsync -aiu --delete --exclude="wp-config.php" "${RemotePath}{index.php,wp-*.php,wp-admin,wp-includes}" "${LocalDest}" \
+rsync -aiu --delete --exclude="wp-config.php" --exclude="wp-config-sample.php" "${RemotePath}{index.php,wp-*.php,wp-admin,wp-includes}" "${LocalDest}" \
     | grep -v '^\.\(d\|f\)' | wc -l
 
 for P in ${Plugins}
