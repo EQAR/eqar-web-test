@@ -5,6 +5,7 @@
  1. Run `update_wp.sh` to fetch/update WordPress core and plugins from Slik-managed instance
  1. Save a fitting database dump in `0001_XYZ.sql`
  1. Clone theme repository into `eqar-wptheme` directory
+ 1. Run `mkdir -p eqar-wptheme/public/js` and `mkdir -p eqar-wptheme/public/css`
  1. Create `.env` (see below)
  1. Run `docker-compose build`
  1. Run `docker-compose up`
