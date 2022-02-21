@@ -49,8 +49,8 @@ services:
 
   grunt:
     build: grunt/
-    environment:
-      - GRUNT_MODE
+    init: true
+    command: [ "${GRUNT_MODE:-default}" ]
     volumes:
       - ./html/assets/themes/${WORDPRESS_THEME}/Gruntfile.js:/workdir/Gruntfile.js:ro
       - ./html/assets/themes/${WORDPRESS_THEME}/src:/workdir/src:ro
