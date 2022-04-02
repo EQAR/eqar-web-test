@@ -22,6 +22,7 @@ RUN set -ex; \
 		libfreetype6-dev \
 		libicu-dev \
 		libjpeg-dev \
+		libldap2-dev \
 		libmagickwand-dev \
 		libpng-dev \
 		libwebp-dev \
@@ -38,6 +39,7 @@ RUN set -ex; \
 		exif \
 		gd \
 		intl \
+		ldap \
 		mysqli \
 		zip \
 	; \
