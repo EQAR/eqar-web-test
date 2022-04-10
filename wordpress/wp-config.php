@@ -5,7 +5,7 @@
 // a helper function to lookup "env_FILE", "env", then fallback
 if (!function_exists('getenv_docker')) {
 	// https://github.com/docker-library/wordpress/issues/588 (WP-CLI will load this file 2x)
-	function getenv_docker($env, $default) {
+	function getenv_docker($env, $default = null) {
 		if ($fileEnv = getenv($env . '_FILE')) {
 			return rtrim(file_get_contents($fileEnv), "\r\n");
 		}
@@ -27,6 +27,10 @@ define( 'FORCE_SSL_ADMIN', false ); // Force SSL for Dashboard - Security > Sett
 define( 'WP_CONTENT_DIR', '/var/www/html/assets' ); // Do not remove. Removing this line could break your site. Added by Security > Settings > Change Content Directory.
 define( 'WP_CONTENT_URL', getenv_docker('WORDPRESS_SITE_URL', 'http://localhost:8080') . '/assets' ); // Do not remove. Removing this line could break your site. Added by Security > Settings > Change Content Directory.
 
+// Site URL (overrides the one set in database, if any)
+define( 'WP_HOME', getenv_docker('WORDPRESS_SITE_URL') );
+define( 'WP_SITEURL', getenv_docker('WORDPRESS_SITE_URL') );
+
 define('WP_AUTO_UPDATE_CORE', false);
 define('FS_METHOD', 'direct');
 
@@ -37,11 +41,11 @@ define('EQAR_ENV', 'LIVE'); // one of LIVE or TEST
 
 define('EQARBASEURL_LIVE', getenv_docker('DEQAR_WEBAPI_BASE', 'https://backend.sandbox.deqar.eu/webapi/v2/browse/'));
 define('EQARCONNECTURL_LIVE', getenv_docker('DEQAR_CONNECTAPI_BASE', 'https://backend.sandbox.deqar.eu/connectapi/v1/'));
-define('EQARAUTHKEY_LIVE', getenv_docker('DEQAR_API_KEY', ''));
+define('EQARAUTHKEY_LIVE', getenv_docker('DEQAR_API_KEY'));
 
 # live environemnt
 define('EQARDB_BASEURL', getenv_docker('EQARDB_API_BASE', 'https://db.app.eqar.eu/stats/v1/'));
-define('EQARDB_AUTHKEY', getenv_docker('EQARDB_API_KEY', ''));
+define('EQARDB_AUTHKEY', getenv_docker('EQARDB_API_KEY'));
 
 define('EQAR_CACHE_TIME', getenv_docker('EQAR_CACHE_TIME', 300) ); // long, static lists (countries, agencies) will be stored as transient for that many seconds
 
