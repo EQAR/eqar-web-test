@@ -49,8 +49,8 @@ define('EQARDB_AUTHKEY', getenv_docker('EQARDB_API_KEY'));
 
 define('EQAR_CACHE_TIME', getenv_docker('EQAR_CACHE_TIME', 300) ); // long, static lists (countries, agencies) will be stored as transient for that many seconds
 
-define('EQAR_MAP_ADDITIONAL_COUNTRIES', array(115, 268) ); // Monaco, Kosovo
-define('EQAR_MAP_MICRO_STATES', array(4, 99, 101, 108, 115, 148, 188) ); // Andorra, Liechtenstein, Luxembourg, Malta, Monaco, San Marino, Holy See
+define('EQAR_MAP_ADDITIONAL_COUNTRIES', array(115, 268, 273) ); // Monaco, Kosovo, BE German Community
+define('EQAR_MAP_MICRO_STATES', array(4, 99, 101, 108, 115, 148, 188, 273) ); // Andorra, Liechtenstein, Luxembourg, Malta, Monaco, San Marino, Holy See
 
 // ** Database settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
