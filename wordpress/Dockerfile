@@ -102,7 +102,7 @@ RUN { \
 	} > /usr/local/etc/php/conf.d/error-logging.ini
 
 RUN set -eux; \
-	a2enmod rewrite expires; \
+	a2enmod rewrite expires headers; \
 	\
 # https://httpd.apache.org/docs/2.4/mod/mod_remoteip.html
 	a2enmod remoteip; \
@@ -137,6 +137,8 @@ RUN set -eux; \
 		echo 'RewriteRule . /index.php [L]'; \
 		echo ''; \
 		echo '# END WordPress'; \
+		echo ''; \
+		echo 'Header set X-Robots-Tag "noindex, nofollow"'; \
 	} > /var/www/html/.htaccess
 
 COPY --chown=www-data:www-data wp-config.php /var/www/html/
