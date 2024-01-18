@@ -34,6 +34,7 @@ services:
       - ./${WORDPRESS_THEME}:/var/www/html/assets/themes/${WORDPRESS_THEME}:ro
       - css:/var/www/html/assets/themes/${WORDPRESS_THEME}/public/css:ro
       - js:/var/www/html/assets/themes/${WORDPRESS_THEME}/public/js:ro
+      - ./robots.txt:/var/www/html/robots.txt:ro
 
   db:
     image: mariadb:10
