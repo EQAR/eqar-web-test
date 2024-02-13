@@ -52,6 +52,10 @@ define('EQAR_CACHE_TIME', getenv_docker('EQAR_CACHE_TIME', 300) ); // long, stat
 define('EQAR_MAP_ADDITIONAL_COUNTRIES', array(115, 268, 273) ); // Monaco, Kosovo, BE German Community
 define('EQAR_MAP_MICRO_STATES', array(4, 99, 101, 108, 115, 148, 188, 273) ); // Andorra, Liechtenstein, Luxembourg, Malta, Monaco, San Marino, Holy See
 
+# ESCO API
+define('ESCO_BASEURL', getenv_docker('ESCO_BASEURL', 'https://ec.europa.eu/esco/api/'));
+define('ESCO_CACHE_TIME', getenv_docker('ESCO_CACHE_TIME', 300) );
+
 // ** Database settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
 define( 'DB_NAME', getenv_docker('WORDPRESS_DB_NAME', 'wordpress') );
