@@ -29,6 +29,7 @@ services:
       - EQARDB_API_KEY
       - EQAR_CACHE_TIME
       - ESCO_BASEURL
+      - ESCO_VERSION
       - ESCO_CACHE_TIME
     ports:
       - "${HTTP_PORT:-8080}:80"

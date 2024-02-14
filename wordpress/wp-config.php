@@ -54,6 +54,7 @@ define('EQAR_MAP_MICRO_STATES', array(4, 99, 101, 108, 115, 148, 188, 273) ); //
 
 # ESCO API
 define('ESCO_BASEURL', getenv_docker('ESCO_BASEURL', 'https://ec.europa.eu/esco/api/'));
+define('ESCO_VERSION', getenv_docker('ESCO_VERSION', 'v1.1.1') );
 define('ESCO_CACHE_TIME', getenv_docker('ESCO_CACHE_TIME', 300) );
 
 // ** Database settings - You can get this info from your web host ** //
