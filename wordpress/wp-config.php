@@ -43,6 +43,10 @@ define('EQARBASEURL_LIVE', getenv_docker('DEQAR_WEBAPI_BASE', 'https://backend.s
 define('EQARCONNECTURL_LIVE', getenv_docker('DEQAR_CONNECTAPI_BASE', 'https://backend.sandbox.deqar.eu/connectapi/v1/'));
 define('EQARAUTHKEY_LIVE', getenv_docker('DEQAR_API_KEY'));
 
+# Meilisearch
+define('DEQAR_MEILI_BASE', getenv_docker('DEQAR_MEILI_BASE'));
+define('DEQAR_MEILI_KEY', getenv_docker('DEQAR_MEILI_KEY'));
+
 # live environemnt
 define('EQARDB_BASEURL', getenv_docker('EQARDB_API_BASE', 'https://db.app.eqar.eu/stats/v1/'));
 define('EQARDB_AUTHKEY', getenv_docker('EQARDB_API_KEY'));

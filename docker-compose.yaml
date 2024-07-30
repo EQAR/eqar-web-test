@@ -25,6 +25,8 @@ services:
       - DEQAR_WEBAPI_BASE
       - DEQAR_CONNECTAPI_BASE
       - DEQAR_API_KEY
+      - DEQAR_MEILI_BASE
+      - DEQAR_MEILI_KEY
       - EQARDB_API_BASE
       - EQARDB_API_KEY
       - EQAR_CACHE_TIME
